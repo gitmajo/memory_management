@@ -1,29 +1,29 @@
-0. Kompilacja projektu:
-    > chmod +x install_packages.sh
-    > su (hasło: nokia)
-    > ./install_packages.sh
-    > exit
+Rada: Używaj gita. Rób commit co każdy punkt/podpunkt.
+
+1. Uruchom example1 i użyj valgrinda, aby sprawdzić wycieki pamięci
     > mkdir build
     > cd build
     > cmake ..
     > make
-
-Rada: Używaj gita. Rób commit co każdy punkt/podpunkt.
-
-1. Uruchom valgrind1 i użyj valgrinda, aby sprawdzić wycieki pamięci
-    > ./valgrind1
-    > valgrind ./valgrind1
+    > ./example1
+    > valgrind ./example1
    Popraw kod tak, aby nie było wycieku pamięci, skompiluj i ponownie sprawdź program valgrindem
 
-2. Uruchom valgrind2 i analogicznie użyj valgrinda aby sprawdzić wycieki pamięci. Popraw program.
+2. Uruchom example2 i analogicznie użyj valgrinda aby sprawdzić wycieki pamięci. Popraw program.
 
-3. Uruchom valgrind3 i sprawdź czy są w nim wycieki pamięci.
+3. Uruchom example3 i sprawdź czy są w nim wycieki pamięci.
 a) napisz własną klasę wyjatków dziedziczącą po logic_error i użyj jej w kodzie zamiast logic_error
 b) popraw wyciek pamięci w programie
-c) zmień kod w pliku valgrind3.cpp tak, aby używał unique_ptr.
+c) zmień kod w pliku example3.cpp tak, aby używał unique_ptr.
 d) użyj make_unique tam, gdzie to możliwe.
 
-4. Zajrzyj do pliku list.cpp, gdzie zaimplementowana jest prosta lista jednokierunkowa.
+4. Uruchom program example4
+a) wypisz sobie wszystkie problemy, jakie widzisz w tym programie
+b) sprawdź pod valgrindem wycieki pamięci
+c) popraw problemy
+d) kiedy i jak można usunąć elementy z kolekcji?
+
+5. Zajrzyj do pliku list.cpp, gdzie zaimplementowana jest prosta lista jednokierunkowa.
 Metoda add(Node* node) dodaje nowy węzeł zawsze na końcu listy.
 Aby dostać konkretny węzeł, metoda get(const int value) iteruje po liście od pierwszego jej elementu w kierunku ostatniego,
 przechodząc przez wszystkie elementy aż do napotkania tego, który chcemy zwrócić.

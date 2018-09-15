@@ -7,6 +7,7 @@ using namespace std;
 struct Resource
 {
     Resource(char* byte) : byte_(byte) {}
+    char* byte() const { return byte_; }
     virtual string name() const = 0;
     ~Resource() { delete byte_; }
 
@@ -32,19 +33,34 @@ struct ResourceFactory
     Resource* makeResourceB(char* byte) { return new ResourceB{byte}; }
 };
 
+struct ResourceCollection
+{
+    void add(Resource* r) { resources.push_back(r); }
+    void clear() { resources.clear(); }
+    Resource* operator[](int index) { return resources[index]; }
+    void printAll()
+    {
+        for (const auto & res : resources)
+        {
+            cout << res->name() << endl;
+        }
+    }
+
+private:
+    vector<Resource*> resources;
+};
+
 int main()
 {
-    vector<Resource*> resources;
+    ResourceCollection collection;
     ResourceFactory rf;
-    resources.push_back(rf.makeResourceA(new char{0x01}));
-    resources.push_back(rf.makeResourceB(new char{0x02}));
-    for (const auto & res : resources)
-    {
-        cout << res->name() << endl;
-    }
-    auto firstName = resources[0]->name();
-    resources.clear();
-    cout << firstName << endl;
+    collection.add(rf.makeResourceA(new char{0x01}));
+    collection.add(rf.makeResourceB(new char{0x02}));
+    collection.printAll();
+
+    auto firstByte = collection[0]->byte();
+    collection.clear();
+    cout << *firstByte << endl;
 
     return 0;
 }
