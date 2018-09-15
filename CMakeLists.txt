@@ -12,10 +12,10 @@ add_compile_options(-c
                     -Wuninitialized
                     -pedantic
                     -pedantic-errors
-                    -std=c++1y
+                    -std=c++14
                     -g)
 
-add_executable(valgrind1 valgrind1.cpp)
-add_executable(valgrind2 valgrind2.cpp)
-add_executable(valgrind3 valgrind3.cpp)
+add_executable(example1 example1.cpp)
+add_executable(example2 example2.cpp)
+add_executable(example3 example3.cpp)
 add_executable(list list.cpp)
